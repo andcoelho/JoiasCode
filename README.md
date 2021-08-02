@@ -6,5 +6,5 @@ GENERATION T-30
 Anderson Coelho |
 Beatriz Gomes -- https://github.com/BeatrizGomesAbreu |
 Cássia de Arruda -- https://github.com/CassiaDeArruda |
-João Pedro -- https://github.com/jonpdro
+João Pedro -- https://github.com/jonpdro |
 Lucas Aguiar -- https://github.com/LukyAguiar |
