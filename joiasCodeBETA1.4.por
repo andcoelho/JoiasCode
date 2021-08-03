@@ -1,21 +1,10 @@
 programa
-{
-		/*G7001  Colar Safira R$ 70,00
-		G7002  Pulceira Liz R$ 55,50
-		G7003  Anel Cristal R$ 39,99
-		G7004  Brinco Jaspe R$ 59,99
-		G7005  Pingente Lua R$ 65,50
-		G7006  Colar Amélia R$ 85,00
-		G7007  Anel Cristal R$ 45,50
-		G7008  Brinco Ágata R$ 40,50
-		G7009  Pulseira Icy R$ 60,00
-		G7010  Anel Topázio R$ 59,99*/
-		
+{		
 	inclua biblioteca Matematica --> mat
 	inclua biblioteca Calendario --> cal
 	
-	funcao inicio(){
-
+	funcao inicio()
+	{
 		const inteiro TAM = 10
 		cadeia produto[TAM] = {"PULSEIRA ICY","ANEL TOPÁZIO","COlAR SAFIRA","PULSEIRA LIZ","ANEL CRISTAL","BRINCO JASPE","PINGENTE LUA","COLAR AMÉLIA","ANEL CRISTAL","BRINCO ÁGATA"}
 		cadeia carrinho[TAM], codigo[TAM]
@@ -29,7 +18,8 @@ programa
 		
 
 		//OS CODIGOS DO PRODUTO SERÃO GERADOS AQUI
-		para(x = 0 ;x < 10; x++){
+		para(x = 0 ;x < 10; x++)
+		{
 			codigo[x] = "G7-0" + (x + 1)
 			auxQntd[x] = 0
 		}
@@ -37,111 +27,167 @@ programa
 		linha()
 		escreva("\n\t\t      \n")
 		nome()
-		escreva("\n\n\t     ",slogan,"\n")
+		escreva("\n\n\t    ",slogan,"\n")
 		linha()
-		escreva("\t          RELAÇÃO DE PRODUTOS")
+		escreva("\t        ✧ RELAÇÃO DE PRODUTOS ✧")
 		linha()
 		escreva("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n")
-		para(x = 0; x < 10; x++){
+		
+		para(x = 0; x < 10; x++)
+		{
 			escreva("\n ",codigo[x],"\t     ",produto[x],"\t   ",valores[x],"\t    ",estoque[x])
 		}
-		linha()
 		
-		escreva("\nDESEJA FAZER COMPRAS? (S/N): ")
+		linha()
+		escreva("\nDESEJA FAZER COMPRAS? ")
+		escreva("\nDIGITE 'S' PARA SIM E 'N' PARA NÃO: ")
 		leia(opcao3)
 		linha()
 
-		se(opcao3 == "S" ou opcao3 == "s"){
-			se(opcao == "S" ou opcao == "s"){
-				faca{
+		se(opcao3 == "S" ou opcao3 == "s")
+		{
+			se(opcao == "S" ou opcao == "s")
+			{
+				faca
+				{
 					escreva("\nDIGITE O CÓDIGO DO PRODUTO: ")
 					leia(auxCod)
 						
-					para(x = 0; x < 10; x++){
-						se(auxCod == codigo[x]){
-							escreva("\nINFORME A QUANTIDADE QUE DESEJA: ")
+					para (x = 0; x < 10; x++)
+					{
+						se (auxCod == codigo[x])
+						{
+							escreva("INFORME A QUANTIDADE QUE DESEJA: ")
 							leia(contEstoque[x])
 							auxQntd[x]+=contEstoque[x]
 	
-							se(contEstoque[x] > estoque[x]){
+							se (contEstoque[x] > estoque[x])
+							{
 								auxQntd[x] = 0
 								linha()
 								escreva("QUANTIDADE INVÁLIDA\n")
 								escreva("\nO ESTOQUE É DE: ", estoque[x])
 								
-							}senao se(contEstoque[x] <= 0){
+							}
+							senao se (contEstoque[x] <= 0)
+							{
 								linha()
 								escreva("QUANTIDADE INVÁLIDA")
 								escreva("\nO ESTOQUE É DE: ", estoque[x])
 								
-							}senao se(contEstoque[x] <= estoque[x]){
+							}
+							senao se(contEstoque[x] <= estoque[x])
+							{
 								estoque[x] = estoque[x] - contEstoque[x]
 								valorCompra[x] = valores[x] * auxQntd[x]
+
+								linha ()
+								escreva("\t         ✧ CARRINHO DE COMPRAS ✧")
+								linha ()
+								escreva("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n")
 								
-								linha()
-								escreva("\t\t  CARRINHO\n\n")
-								escreva("CÓDIGO\tPRODUTO\t\tPREÇO\t    QUANTIDADE\n")
-								
-								para(x = 0; x < 10; x++){
-									se(auxQntd[x] > 0){
-										escreva("\n",codigo[x],"\t", produto[x],"\tR$", mat.arredondar(valorCompra[x], 2),"\t", auxQntd[x])
+								para(x = 0; x < 10; x++)
+								{
+									se(auxQntd[x] > 0)
+									{
+										escreva("\n ",codigo[x],"\t     ", produto[x],"\t  R$", mat.arredondar(valorCompra[x], 2),"\t    ", auxQntd[x])
 								
 									}
 								}	
 							}
 						}
+						se (auxCod != "G7-01" e auxCod != "G7-02" e auxCod != "G7-03" e auxCod != "G7-04" e auxCod != "G7-05" e auxCod != "G7-06" e auxCod != "G7-07" e auxCod != "G7-08" e auxCod != "G7-09" e auxCod != "G7-010")
+						{
+							escreva ("\nCÓDIGO INVÁLIDO!")
+							pare
+						}
 						
 					}
 					
 					linha()
-					escreva("DESEJA CONTINUAR COMPRANDO? (S/N): ")
+					escreva("\nDESEJA CONTINUAR COMPRANDO?")
+					escreva("\nDIGITE 'S' PARA SIM E 'N' PARA NÃO: ")
 					leia(opcao)
 					linha()
-					escreva("\t          RELAÇÃO DE PRODUTOS")
-					linha()
-					escreva("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n")
-					para(x = 0; x < 10; x++){
-						escreva("\n ",codigo[x],"\t     ",produto[x],"\t   ",valores[x],"\t    ",estoque[x])
+
+					se (opcao == "S" ou opcao == "s")
+					{
+						escreva("\t        ✧ RELAÇÃO DE PRODUTOS ✧")
+						linha()
+						escreva("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n")
+						
+						para(x = 0; x < 10; x++)
+						{
+							escreva("\n ",codigo[x],"\t     ",produto[x],"\t   ",valores[x],"\t    ",estoque[x])
+						}
+						
+						linha()
 					}
-					linha()
 					
 				}enquanto(opcao == "S" ou opcao == "s")
+
+				se (opcao != "S" e opcao != "s")
+				{
+					escreva("\t         ✧ CARRINHO DE COMPRAS ✧")
+					linha ()
+					escreva("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n")
+								
+					para(x = 0; x < 10; x++)
+					{
+						se(auxQntd[x] > 0)
+						{
+							escreva("\n ",codigo[x],"\t     ", produto[x],"\t   R$", mat.arredondar(valorCompra[x], 2),"\t    ", auxQntd[x])
+								
+						}
+					}
+					linha ()	
+				}
 	
-				escreva("\nDESEJA MODIFICAR SEU PEDIDO? (S/N):  ")
+				escreva("\nDESEJA MODIFICAR SEU PEDIDO?")
+				escreva("\nDIGITE 'S' PARA SIM E 'N' PARA NÃO: ")
 				leia(opcao2)
 				
-				enquanto(opcao2 =="s" ou opcao2 =="S"){
+				enquanto(opcao2 =="s" ou opcao2 =="S")
+				{
 					escreva("\nDIGITE O CÓDIGO DO PRODUTO: ")
 					leia(auxCod)
 					
-	               	para(x = 0; x < 10; x++){
-						se(auxCod == codigo[x]){								
-							escreva("\nINFORME A QUANTIDADE QUE DESEJA DIMINUIR DO PRODUTO: ")
+	               	para(x = 0; x < 10; x++)
+	               	{
+						se(auxCod == codigo[x])
+						{								
+							escreva("INFORME A QUANTIDADE QUE DESEJA DIMINUIR DO PRODUTO: ")
 							leia(contEstoque[x])
 							auxQntd[x]-=contEstoque[x]
 							estoque[x] = estoque[x] + contEstoque[x]
 							valorCompra[x] = valores[x] * auxQntd[x]
 						}	
-							
-						linha()
-						escreva("\t\t  CARRINHO\n\n")
-						escreva("CÓDIGO\tPRODUTO\t\tPREÇO\t    QUANTIDADE\n")
-						para(x = 0; x < 10; x++){
-							se(auxQntd[x] > 0){
-								escreva("\n",codigo[x],"\t", produto[x],"\tR$", mat.arredondar(valorCompra[x], 2),"\t\t", auxQntd[x])
-							}
-				         	}
-	               	}
+	               	}	
+
+	               	linha ()
+					escreva("\t         ✧ CARRINHO DE COMPRAS ✧")
+					linha ()
+					escreva("CÓDIGO\t        PRODUTO\t\t   PREÇOS\t  QNTDE\n")
+					
+					para(x = 0; x < 10; x++)
+					{
+						se(auxQntd[x] > 0)
+						{
+							escreva("\n",codigo[x],"\t", produto[x],"\tR$", mat.arredondar(valorCompra[x], 2),"\t\t", auxQntd[x])
+						}
+				     }
 	               	
 	               	escreva("\nDESEJA CONTINUAR MODIFICANDO O SEU PEDIDO? (S/N):  ")
 					leia(opcao2)
 				}
 	               
-				para(x = 0; x < 10; x++){
+				para(x = 0; x < 10; x++)
+				{
 					contador += (auxQntd[x] * valores[x])
 				}
 				
-				se(contador == 0){
+				se(contador == 0)
+				{
 					limpa()
 					linha()
 					escreva("\n\t\t      \n")
@@ -151,7 +197,9 @@ programa
 					escreva("\t\t      ATÉ BREVE!!")
 					linha()
 					
-				}senao{
+				}
+				senao
+				{
 					linha()
 					escreva("\t   VALOR TOTAL DA COMPRA: R$", contador)
 					linha()
@@ -161,11 +209,13 @@ programa
 					escreva(" OPÇÃO 3 - EM 2X COM 15% TOTAL DE ACRESCIMENTO\n")
 					linha()
 				
-					faca{
+					faca
+					{
 						escreva("INSIRA AQUI SUA FORMA DE PAGAMENTO: ")
 						leia(pagamento)
 					
-						escolha(pagamento){
+						escolha(pagamento)
+						{
 							caso 1:
 								limpa()
 								linha()
@@ -209,11 +259,28 @@ programa
 						
 							caso contrario:
 								escreva("OPÇÃO INVÁLIDA, TENTE NOVAMENTE.\n")	
-							}
+						}
 							
 					}enquanto(pagamento >= 3)
 				}
-			}senao se(opcao == "n" ou opcao == "N"){
+				
+				escreva("\t          RELAÇÃO DE PRODUTOS")
+				linha()
+				escreva("CÓDIGO\t        PRODUTO\t\t   PREÇO\t  ESTOQUE\n")
+				
+				para(x = 0; x < 10; x++)
+				{
+					escreva("\n ",codigo[x],"\t     ",produto[x],"\t   ",valores[x],"\t    ",estoque[x])
+				}
+					
+				linha ()
+				escreva("\t\t  CARRINHO\n\n")
+				escreva("CÓDIGO\tPRODUTO\t\tPREÇO\t    QUANTIDADE\n")
+				linha ()
+				
+			}
+			senao se (opcao == "n" ou opcao == "N")
+			{
 				limpa()
 				linha()
 				escreva("\n\t\t      \n")
@@ -223,14 +290,17 @@ programa
 				escreva("\t\t      ATÉ BREVE!!")
 				linha()
 				
-			}senao{
+			}
+			senao
+			{
 				limpa()
 				linha()
 				escreva("\t\t      OPÇÃO INVÁLIDA!")
 				inicio()
-				
 			}
-		}senao se(opcao3 == "n" ou opcao3 == "N"){
+		}
+		senao se (opcao3 == "n" ou opcao3 == "N")
+		{
 			limpa()
 			linha()
 			escreva("\n\t\t      \n")
@@ -240,12 +310,13 @@ programa
 			escreva("\t\t      ATÉ BREVE!!")
 			linha()
 			
-		}senao{
+		}
+		senao
+		{
 			limpa()
 			linha()
 			escreva("\t\t      OPÇÃO INVÁLIDA!")
 			inicio()
-			
 		}
 	}
 
@@ -266,9 +337,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 5324; 
+ * @POSICAO-CURSOR = 4577; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {estoque, 23, 10, 7}-{contEstoque, 24, 10, 11}-{auxQntd, 26, 10, 7};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
